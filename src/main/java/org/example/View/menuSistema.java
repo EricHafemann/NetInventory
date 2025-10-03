@@ -1,7 +1,7 @@
 package org.example.View;
 
 import org.example.main.AppRunner;
-import org.example.util.Utility;
+import org.example.Utility.Utility;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

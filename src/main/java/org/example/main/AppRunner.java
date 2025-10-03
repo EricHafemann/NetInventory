@@ -11,28 +11,27 @@ import java.util.Set;
 
 public class AppRunner {
 
-    // Mudança para throws IOException, que é mais geral e cobre FileNotFoundException
     public static void iniciar(String caminhoArquivo) throws IOException {
 
         String arquivoSaida = "Relatorio_Hosts_IP_MAC_Novo.xlsx";
 
-        // 1. DATA: Leitura do arquivo (Pode lançar IOException)
+        //Leitura do arquivo
         Set<String> hostsUnicos = HostFileReader.lerHosts(caminhoArquivo);
 
         System.out.println("--- Iniciando Busca de IPs e MACs ---");
         System.out.println("Processando " + hostsUnicos.size() + " hosts...");
 
-        // NOVO: Verifica se há hosts para processar
+        // Verifica se existe hosts para processar
         if (hostsUnicos.isEmpty()) {
             System.out.println("AVISO: Nenhum host encontrado. Exportação do Excel cancelada.");
-            return; // Sai do método se não houver hosts
+            return; // Sai se não existe
         }
 
-        // 2. SERVICE: Processamento (Lógica de Negócios)
+        // Processamento das informações
         org.example.service.HostService hostService = new org.example.service.HostService();
         List<HostData> resultados = hostService.processarHosts(hostsUnicos);
 
-        // 3. MAIN: Exportação (Apresentação)
+
         // Este bloco try-catch é apenas para erros do POI, não de leitura de arquivo.
         try {
             ExcelExporter.exportar(resultados, arquivoSaida);
