@@ -24,7 +24,7 @@ public class menuSistema {
             System.out.println("[3] - Sair do Sistema");
 
             System.out.print("Escolha uma opção: ");
-            int opMenu = Utility.lerInt();
+            int opMenu = org.example.Utility.Utility.lerInt();
 
             String caminhoArquivo = null;
 
