@@ -1,52 +1,50 @@
-# 💻 NetInventory: Host Scanner & Report Generator
+# 🕵️ Verificador de Inventário de Rede (Host e IP/MAC)
 
-Ferramenta Java desenvolvida para realizar varredura de hosts em rede, obter endereços IP e MAC, e gerar um inventário organizado em um arquivo Excel.
-
----
-
-## 🎯 Objetivo
-
-Gerar relatórios de inventário de rede de forma rápida e automatizada, resolvendo nomes de host e buscando endereços MAC (utilizando `ping` seguido de `arp -a`) para garantir a acuracidade dos dados.
+Este projeto Java funciona como um verdadeiro detetive de rede, automatizando a coleta de informações cruciais de hosts, IPs e endereços MAC, exibindo tudo diretamente no console.
 
 ---
 
-## ✨ Funcionalidades
+## 🎯 Funcionalidades
 
-- **📄 Leitura de Hosts**  
-  Lê a lista de hosts/IPs de um arquivo de texto (`.txt`) fornecido pelo usuário via menu.
+O programa lê uma lista de hosts/IPs de um arquivo de texto e tenta localizar suas informações de rede:
 
-- **🔍 Coleta de Dados**  
-  Resolve IPs e utiliza comandos do sistema (`ping` e `arp`) para obter o endereço MAC de cada host.
-
-- **📊 Relatório Final**  
-  Exporta todos os dados coletados para um arquivo Excel (`.xlsx`) com formatação e estilos aplicados.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- **Linguagem:** Java (JDK 8 ou superior)
-- **Geração de Relatórios:** [Apache POI](https://poi.apache.org/) (manipulação de arquivos Excel)
+| Status             | Exemplo de Saída                                                               | Significado                                                      |
+| ------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Sucesso (Local)    | OK -> Host: localhost IP (IPv4 LOCAL): 127.0.0.1                               | Host local encontrado com sucesso                                |
+| Sucesso (Remoto)   | OK -> Host: servidor-01 IP (IPv4 Remoto): 192.168.1.5                          | Host remoto encontrado com sucesso                               |
+| MAC Não Encontrado | OK -> Host: roteador-externo IP (IPv4 Remoto): 192.168.20.1 MAC Não Encontrado | MAC não encontrado (normal para dispositivos fora da rede local) |
+| Falha Total        | ERRO -> Host: host-invalido Falha no Processamento: Unknown host               | Falha total no processamento do host                             |
 
 ---
 
-## 📂 Estrutura do Projeto
+## 🚀 Guia Rápido de Uso
 
-O código está organizado em pacotes, seguindo uma arquitetura em camadas para facilitar manutenção e legibilidade:
+### 1. Preparação
 
-| Pacote     | Responsabilidade                                                                 |
-|------------|-----------------------------------------------------------------------------------|
-| `view`     | Contém o menu interativo (`menuSistema.java`)                                    |
-| `main`     | Coordenação da execução (`AppRunner`) e exportação para Excel (`ExcelExporter`)  |
-| `service`  | Lógica de negócios (`HostService`) e processamento de dados                      |
-| `data`     | Operações de baixo nível (I/O, leitura de `.txt`, execução de comandos ARP/Ping) |
-| `model`    | Modelagem dos dados (`HostData`)                                                  |
+Crie um arquivo de texto (.txt) com os hosts ou IPs que deseja verificar, um por linha.
 
----
+### 2. Execução do Programa
 
-## 🚀 Como Usar
+#### Pelo Terminal ou Prompt de Comando
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/seu-usuario/NetInventory.git
-   cd NetInventory
+1. Abra o terminal na pasta onde está o `.jar` do programa.
+2. Execute o comando:
+
+```bash
+java -jar NomeDoPrograma.jar
+```
+
+> Substitua `NomeDoPrograma.jar` pelo nome real do arquivo.
+
+3. Informe o caminho do arquivo de hosts quando solicitado:
+
+```
+Digite o caminho do arquivo de hosts: C:\Users\Eric\hosts.txt
+```
+
+4. O programa processará cada host/IP e exibirá os resultados no console.
+
+#### Dicas Extras
+
+* Arraste o arquivo `.txt` para o terminal em sistemas que suportam, preenchendo o caminho automaticamente.
+* Certifique-se de que o Java esteja instalado e configurado no PATH (`java -version` para conferir).
