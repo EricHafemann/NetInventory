@@ -43,8 +43,3 @@ Digite o caminho do arquivo de hosts: C:\Users\Eric\hosts.txt
 ```
 
 4. O programa processará cada host/IP e exibirá os resultados no console.
-
-#### Dicas Extras
-
-* Arraste o arquivo `.txt` para o terminal em sistemas que suportam, preenchendo o caminho automaticamente.
-* Certifique-se de que o Java esteja instalado e configurado no PATH (`java -version` para conferir).
